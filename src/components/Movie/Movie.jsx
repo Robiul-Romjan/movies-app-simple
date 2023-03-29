@@ -1,7 +1,9 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const Movie = ({movie}) => {
+const Movie = ({movie, handleBookMark}) => {
     const {poster, movieName, description, watchTime, imdbRating} = movie;
+
+       
     return (
         <div className='col-lg-4'>
             <div className="card mb-3 p-3">
@@ -14,7 +16,7 @@ const Movie = ({movie}) => {
                     <p>Rating: {imdbRating} </p>
                 </div>
               </div>
-              <button className='btn btn-success w-100'>Book Now</button>
+              <button onClick={()=> handleBookMark(watchTime)} className='btn btn-success w-100'>Book Now</button>
             </div>
         </div>
     );

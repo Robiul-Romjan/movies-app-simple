@@ -1,9 +1,22 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-const SideBar = () => {
+const SideBar = ({movieTime}) => {
+    const [time, setTime] = useState(movieTime)
+
+   useEffect(()=>{
+    const getTime = localStorage.getItem("watchTime")
+    setTime(getTime)
+   },[movieTime]);
+
+   const clearTime = () => {
+    localStorage.clear();
+    setTime(0)
+   }
+
     return (
         <div>
-            <h4>This is side bar</h4>
+            <p>Your watch time: {time}</p>
+            <button onClick={clearTime}>Clear time</button>
         </div>
     );
 };
