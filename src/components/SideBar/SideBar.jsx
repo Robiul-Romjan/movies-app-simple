@@ -11,7 +11,7 @@ const SideBar = ({ movieTime }) => {
         const getTime = localStorage.getItem("watchTime")
         const getBreakTimeLC = localStorage.getItem("breakTime");
         setTime(getTime)
-        setBreakTime(getBreakTimeLC);  
+        setBreakTime(getBreakTimeLC);
     }, [movieTime]);
 
     const clearTime = () => {
@@ -21,17 +21,21 @@ const SideBar = ({ movieTime }) => {
     };
 
     const handleBreakTime = (breakTime) => {
-       localStorage.setItem("breakTime", breakTime);
-       const getBreakTimeLC = localStorage.getItem("breakTime");
-       if(getBreakTimeLC){
-        setBreakTime(getBreakTimeLC);
-       }else{
-        setBreakTime(0);
-       }    
+        localStorage.setItem("breakTime", breakTime);
+        const getBreakTimeLC = localStorage.getItem("breakTime");
+        if (getBreakTimeLC) {
+            setBreakTime(getBreakTimeLC);
+        } else {
+            setBreakTime(0);
+        }
     };
 
     const handleComplete = () => {
-        toast(time - breakTime);
+
+        const newTime = localStorage.getItem("watchTime") - breakTime;
+        localStorage.setItem("watchTime", newTime)
+        toast(newTime);
+        setTime(newTime)
     }
 
 
@@ -41,9 +45,9 @@ const SideBar = ({ movieTime }) => {
             <h5 className='text-center mt-4'>Your watch time: {time}</h5>
             <h4 className='text-center mt-4'>Add Break Time</h4>
             <div className="text-center">
-                <button onClick={()=> handleBreakTime(10)} className="btn btn-primary">10</button>
-                <button onClick={()=> handleBreakTime(20)} className="btn btn-primary mx-3">20</button>
-                <button onClick={()=> handleBreakTime(30)} className="btn btn-primary">30</button>
+                <button onClick={() => handleBreakTime(10)} className="btn btn-primary">10</button>
+                <button onClick={() => handleBreakTime(20)} className="btn btn-primary mx-3">20</button>
+                <button onClick={() => handleBreakTime(30)} className="btn btn-primary">30</button>
                 <span className="input-group-text mt-3">{breakTime} minutes</span>
             </div>
             <div className='text-center mt-5'>

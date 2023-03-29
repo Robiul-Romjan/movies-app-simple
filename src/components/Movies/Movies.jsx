@@ -3,16 +3,15 @@ import Movie from '../Movie/Movie';
 
 const Movies = ({handleBookMark}) => {
 
-    const [movies, setMovies] = useState([])
+    const [movies, setMovies] = useState([]);
 
     useEffect(()=>{
         fetch("data.json")
         .then((res)=> res.json())
         .then((data)=> setMovies(data))
-    }, [])
+    }, []);
 
   
-
     return (
         <div className='row'>
             {
